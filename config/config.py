@@ -75,11 +75,11 @@ PREP_SPARK = not USE_CLUSTER_SPARK
 
 # Whether to restart the Master and all Workers
 # This should always be false for Yarn
-RESTART_SPARK_CLUSTER = True
+RESTART_SPARK_CLUSTER = False
 RESTART_SPARK_CLUSTER = RESTART_SPARK_CLUSTER and not IS_YARN_MODE
 
 # Rsync SPARK_HOME to all the slaves or not
-RSYNC_SPARK_HOME = True
+RSYNC_SPARK_HOME = False 
 
 # Which tests to run
 RUN_SPARK_TESTS = True
@@ -109,14 +109,20 @@ DISK_WARMUP_FILES = 200
 PROMPT_FOR_DELETES = False 
 
 # Files to write results to
-SPARK_OUTPUT_FILENAME = "results/spark_perf_output_%s_%s" % (
-    SPARK_COMMIT_ID.replace("/", "-"), time.strftime("%Y-%m-%d_%H-%M-%S"))
+#SPARK_OUTPUT_FILENAME = "results/spark_perf_output_%s_%s" % (
+#    SPARK_COMMIT_ID.replace("/", "-"), time.strftime("%Y-%m-%d_%H-%M-%S"))
+
+SPARK_OUTPUT_FILENAME = "/tmp/outputs"+time.strftime("%Y-%m-%d_%H-%M-%S")
+
 PYSPARK_OUTPUT_FILENAME = "results/python_perf_output_%s_%s" % (
     SPARK_COMMIT_ID.replace("/", "-"), time.strftime("%Y-%m-%d_%H-%M-%S"))
+
 STREAMING_OUTPUT_FILENAME = "results/streaming_perf_output_%s_%s" % (
     SPARK_COMMIT_ID.replace("/", "-"), time.strftime("%Y-%m-%d_%H-%M-%S"))
+
 MLLIB_OUTPUT_FILENAME = "results/mllib_perf_output_%s_%s" % (
     SPARK_COMMIT_ID.replace("/", "-"), time.strftime("%Y-%m-%d_%H-%M-%S"))
+
 PYTHON_MLLIB_OUTPUT_FILENAME = "results/python_mllib_perf_output_%s_%s" % (
     SPARK_COMMIT_ID.replace("/", "-"), time.strftime("%Y-%m-%d_%H-%M-%S"))
 
@@ -139,7 +145,7 @@ assert SCALE_FACTOR > 0, "SCALE_FACTOR must be > 0."
 # If set, removes the first N trials for each test from all reported statistics. Useful for
 # tests which have outlier behavior due to JIT and other system cache warm-ups. If any test
 # returns fewer N + 1 results, an exception is thrown.
-IGNORED_TRIALS = 2
+IGNORED_TRIALS = 0 
 
 # Command used to launch Scala or Java.
 
