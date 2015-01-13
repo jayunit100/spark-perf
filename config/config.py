@@ -53,7 +53,7 @@ USE_CLUSTER_SPARK = True
 
 # URL of the HDFS installation in the Spark EC2 cluster
 # Not necessarily required for all tests. 
-HDFS_URL = "file:///" % socket.gethostname()
+HDFS_URL = "file:///"
 
 # Set the following if not using existing Spark installation
 # Commit id and repo used if you are not using an existing Spark cluster
