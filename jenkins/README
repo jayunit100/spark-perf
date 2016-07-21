@@ -1,0 +1,7 @@
+This is a script that any jenkins can run for running spark perf
+
+against an openshift cluster.
+
+To run it, just call "jenkins.sh".
+
+IT is mostly self explanatory (start containers, start spark perf job, tail the results and print stacktraces).

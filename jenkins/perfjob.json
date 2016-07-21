@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Job
+metadata:
+  name: sparkperfjobname
+spec:
+  selector:
+    matchLabels:
+      app: sparkperfjob
+  parallelism: 1
+  completions: 1
+  template:
+    metadata:
+      name: sparkperfjob
+      labels:
+        app: sparkperfjob
+    spec:
+      containers:
+      - name: sparkperfjob
+        image: jayunit100/spark-perf
+        env:
+        - name: "SPARK_MASTER_URL"
+          value: "spark://sparkmaster:7077"
+        - name: "HOME"
+          value: "/opt"
+        command: ["/bin/sh","-c","SPARK_USER=jayunit100 /opt/driver-script.sh || find results/ -exec cat {} +"]
+      restartPolicy: Never
+    imagePullPolicy: Always
+    restartPolicy: Never
