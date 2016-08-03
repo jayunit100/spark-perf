@@ -8,6 +8,7 @@ kind: Job
 metadata:
   name: sparkperfjobname
 spec:
+  activeDeadlineSeconds: 600
   selector:
     matchLabels:
       app: sparkperfjob
